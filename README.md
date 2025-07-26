@@ -49,3 +49,48 @@ This pipeline processes, stores, and visualizes the data in near real-time — i
 ```bash
 git clone https://github.com/your-username/smart-city-streaming-pipeline.git
 cd smart-city-streaming-pipeline
+
+2. Start Kafka and Zookeeper
+bash
+Copy
+Edit
+docker-compose up -d
+
+3. Produce, Stream Data to AWS S3 bucket
+Simulate IoT sensor data by pushing to Kafka topics
+
+Launch Spark job:
+
+bash
+Copy
+Edit
+docker exec -it smart_city-spark-master-1 spark-submit --master spark://spark-master:7077 --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,org.apache.hadoop:hadoop-aws:3.3.1,com.amazonaws:aws-java-sdk:1.11.469 jobs/spark-city.py
+
+4. AWS Configuration
+Configure S3 bucket and IAM roles
+
+Run Glue Crawler to catalog data
+
+Use Athena/Redshift for querying
+
+Connect QuickSight to create interactive dashboards
+
+📊 Dashboard Highlights
+Vehicle Speed KPIs
+
+Emergency Incident Tracker
+
+Weather Impact Trends
+
+Map Visualizations of Routes
+
+Heatmaps of Congestion Points
+
+Time Series Analysis by Location & Type
+
+📘 Documentation
+Full project report and detailed technical documentation can be found here:
+👉 Smart City Project Report (PDF)
+
+Acknowledgments
+Special thanks to Yunus for guidance throughout this project and to the open-source community for the amazing tools.
