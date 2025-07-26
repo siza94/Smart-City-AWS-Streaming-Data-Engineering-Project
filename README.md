@@ -56,7 +56,7 @@ cd smart-city-streaming-pipeline
 docker-compose up -d
 ```
 
-4. Produce, Stream Data to AWS S3 bucket
+3. Produce, Stream Data to AWS S3 bucket
 Simulate IoT sensor data by pushing to Kafka topics
 
 Launch Spark job:
