@@ -47,9 +47,10 @@ This pipeline processes, stores, and visualizes the data in near real-time — i
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/smart-city-streaming-pipeline.git
+git clone https://github.com/siza94/Smart-City-AWS-Streaming-Data-Engineering-Project.git
 cd smart-city-streaming-pipeline
 ```
+
 
 2. Start Kafka and Zookeeper
 ```bash
