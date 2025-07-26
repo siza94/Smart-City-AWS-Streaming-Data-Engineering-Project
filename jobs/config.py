@@ -1,0 +1,4 @@
+configuration = {
+    "AWS_ACCESS_KEY": "AKIA4VDBL5XZ7QB2GGNH",
+    "AWS_SECRET_KEY": "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"
+}
