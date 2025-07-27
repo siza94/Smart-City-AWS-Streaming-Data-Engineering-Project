@@ -147,6 +147,22 @@ Optimized for efficient querying, historical analysis, and cross-domain insights
 
 ---
 
+## 💡 Key Takeaways
+
+📡 Simulated IoT data from vehicles, GPS, weather, and emergencies
+
+🧩 Real-time processing using Spark + Kafka
+
+🧰 End-to-end orchestration using Docker containers
+
+🛠️ Secure, scalable AWS storage and analytics architecture
+
+📊 Visual dashboards for insights via Amazon QuickSight
+
+🏗️ Fully modular design—adaptable for any smart infrastructure project
+
+---
+
 ## 📘 Documentation
 
 [Project Walkthrough (PDF)] - _In Progress_
