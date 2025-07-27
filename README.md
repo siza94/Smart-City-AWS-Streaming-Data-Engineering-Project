@@ -4,6 +4,8 @@
 
 This project implements a full real-time data engineering pipeline simulating a smart city environment. By integrating IoT devices, stream processing, and cloud services, the solution enables continuous monitoring and analysis of critical urban data — such as traffic flow, weather conditions, GPS locations, and emergency incidents — empowering city officials with real-time insights for smarter urban management.
 
+---
+
 ## ⚙️ Key Features
 
 - **Real-time data ingestion** from simulated IoT sensors
@@ -12,7 +14,7 @@ This project implements a full real-time data engineering pipeline simulating a 
 - **AWS S3, Glue, Redshift, Athena, and QuickSight** for cloud storage, ETL, querying, and visualization
 - **Dashboards** for vehicle telemetry, congestion, weather alerts, and emergency incidents
 
-
+---
 
 ## 🔧 Technologies Used
 
@@ -26,6 +28,8 @@ This project implements a full real-time data engineering pipeline simulating a 
 | Containerization    | Docker, Docker Compose                           |
 | Others              | IAM Roles, Python scripts, Simulated IoT data    |
 
+---
+
 ## 🧪 Use Case Scenario
 
 The simulated use case involves a vehicle traveling between major cities while sending data like:
@@ -37,13 +41,47 @@ The simulated use case involves a vehicle traveling between major cities while s
 
 This pipeline processes, stores, and visualizes the data in near real-time — ideal for smart traffic management, public safety, and city infrastructure optimization.
 
-## 🚀 Getting Started
+---
 
 ### Prerequisites
 - Docker & Docker Compose
 - AWS account (with access to S3, Glue, Athena, Redshift, QuickSight)
 - Python 3.8+
 - AWS CLI configured
+
+---
+
+## 🔧 System Architecture
+
+- <p align="center">
+  <img src="Architecture.png" width="600">
+  <br />
+  <em>AWS, Spark, Kafka & Zookeeper solution architecture</em>
+</p>
+
+This project implements a robust, cloud-first architecture for processing real-time smart city data:
+
+Kafka & Zookeeper (Dockerized): Stream vehicle, GPS, camera, weather, and emergency data from IoT simulators.
+
+Apache Spark: Real-time stream processing with multiple worker nodes.
+
+AWS Cloud Services:
+
+S3 for raw and transformed data storage.
+
+Glue & Crawlers for cataloging.
+
+Athena for serverless querying.
+
+Redshift for warehousing and deep analytics.
+
+QuickSight for visualization.
+
+IAM: Secure role-based access control.
+
+---
+
+## 🚀 Getting Started
 
 ### 1. Clone the Repository
 ```bash
@@ -75,22 +113,61 @@ Use Athena/Redshift for querying
 
 Connect QuickSight to create interactive dashboards
 
-📊 Dashboard Highlights
-Vehicle Speed KPIs
+---
 
-Emergency Incident Tracker
+## 📊 Dashboard (Amazon QuickSight)
 
-Weather Impact Trends
+- <p align="center">
+  <img src="Analysis.pdf" width="600">
+  <br />
+  <em>Project Analysis</em>
+</p>
 
-Map Visualizations of Routes
+The project features an interactive QuickSight dashboard for city-wide analytics and monitoring:
 
-Heatmaps of Congestion Points
 
-Time Series Analysis by Location & Type
+Live vehicle speed and temperature monitoring
+
+Weather & air quality trends by location
+
+Emergency incident distribution and status
+
+Geospatial and time-series insights
+
+---
+
+❄️ Entity Relationship Diagram (ERD)
+The ERD defines the structured schema enabling relationships between multiple data domains:
+
+- <p align="center">
+  <img src="ERD_Diagram.pdf" width="600">
+  <br />
+  <em>ERD Diagram</em>
+</p>
+
+Key Highlights:
+
+vehicle_data acts as the central table linking to:
+
+gps_data
+
+traffic_data
+
+emergency_data
+
+weather_data
+
+All supporting tables include a foreign key: vehicle_id
+
+Optimized for efficient querying, historical analysis, and cross-domain insights.
+
+---
 
 📘 Documentation
 Full project report and detailed technical documentation can be found here:
 👉 Smart City Project Report (PDF)
+
+---
 
 Acknowledgments
 Special thanks to Yunus for guidance throughout this project and to the open-source community for the amazing tools.
