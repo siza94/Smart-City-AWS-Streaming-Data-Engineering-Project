@@ -127,7 +127,8 @@ Geospatial and time-series insights
 
 ---
 
-❄️ Entity Relationship Diagram (ERD)
+## ❄️ Entity Relationship Diagram (ERD)
+
 The ERD defines the structured schema enabling relationships between multiple data domains:
 
 <p align="center">
