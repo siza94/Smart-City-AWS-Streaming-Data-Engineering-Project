@@ -117,27 +117,22 @@ Connect QuickSight to create interactive dashboards
 The project features an interactive QuickSight dashboard for city-wide analytics and monitoring:
 
 
-Live vehicle speed and temperature monitoring
-
-Weather & air quality trends by location
-
-Emergency incident distribution and status
-
-Geospatial and time-series insights
+- Live vehicle speed and temperature monitoring
+- Weather & air quality trends by location
+- Emergency incident distribution and status
+- Geospatial and time-series insights
 
 ---
 
 ## ❄️ Entity Relationship Diagram (ERD)
 
-The ERD defines the structured schema enabling relationships between multiple data domains:
+The ERD defines the structured star schema enabling relationships between multiple data domains:
 
 <p align="center">
   <img src="ERD_Diagram.png" width="600">
   <br />
   <em>ERD Diagram</em>
 </p>
-
-Key Highlights:
 
 vehicle_data acts as the central table linking to:
 
@@ -170,5 +165,7 @@ _Cloud Data Engineer_
 
 This project is for educational purposes and does not hold any proprietary data or licensing constraints.
 
-Acknowledgments
+---
+
+## 🙏🏽 Acknowledgments
 Special thanks to Yusuf for guidance throughout this project and to the open-source community for the amazing tools.
