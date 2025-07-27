@@ -52,12 +52,12 @@ cd python jobs/smart_city.py
 ```
 
 
-2. Start Kafka and Zookeeper
+### 2. Start Kafka and Zookeeper
 ```bash
 docker-compose up -d
 ```
 
-3. Produce, Stream Data to AWS S3 bucket
+### 3. Produce, Stream Data to AWS S3 bucket
 Simulate IoT sensor data by pushing to Kafka topics
 
 Launch Spark job:
@@ -66,7 +66,7 @@ Launch Spark job:
 docker exec -it smart_city-spark-master-1 spark-submit --master spark://spark-master:7077 --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,org.apache.hadoop:hadoop-aws:3.3.1,com.amazonaws:aws-java-sdk:1.11.469 jobs/spark-city.py
 ```
 
-4. AWS Configuration
+### 4. AWS Configuration
 Configure S3 bucket and IAM roles
 
 Run Glue Crawler to catalog data
