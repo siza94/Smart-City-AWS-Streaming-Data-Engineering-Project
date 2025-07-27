@@ -12,7 +12,7 @@ This project implements a full real-time data engineering pipeline simulating a 
 - **AWS S3, Glue, Redshift, Athena, and QuickSight** for cloud storage, ETL, querying, and visualization
 - **Dashboards** for vehicle telemetry, congestion, weather alerts, and emergency incidents
 
----
+
 
 ## 🔧 Technologies Used
 
@@ -26,7 +26,7 @@ This project implements a full real-time data engineering pipeline simulating a 
 | Containerization    | Docker, Docker Compose                           |
 | Others              | IAM Roles, Python scripts, Simulated IoT data    |
 
----
+
 
 ## 🧪 Use Case Scenario
 
@@ -39,7 +39,6 @@ The simulated use case involves a vehicle traveling between major cities while s
 
 This pipeline processes, stores, and visualizes the data in near real-time — ideal for smart traffic management, public safety, and city infrastructure optimization.
 
----
 
 ### Prerequisites
 - Docker & Docker Compose
@@ -47,7 +46,7 @@ This pipeline processes, stores, and visualizes the data in near real-time — i
 - Python 3.8+
 - AWS CLI configured
 
----
+
 
 ## 🔧 System Architecture
 
@@ -120,7 +119,7 @@ The project features an interactive QuickSight dashboard for city-wide analytics
 - Emergency incident distribution and status
 - Geospatial and time-series insights
 
----
+
 
 ## ❄️ Entity Relationship Diagram (ERD)
 
@@ -159,13 +158,11 @@ Optimized for efficient querying, historical analysis, and cross-domain insights
 
 🏗️ Fully modular design—adaptable for any smart infrastructure project
 
----
 
 ## 📘 Documentation
 
 [Project Walkthrough (PDF)] - _In Progress_
 
----
 
 ## 👨🏽‍💻 Author
 
@@ -173,13 +170,12 @@ Optimized for efficient querying, historical analysis, and cross-domain insights
 _Cloud Data Engineer_  
 📫 [Connect on LinkedIn](https://www.linkedin.com/in/sithsaba-zantsi/)
 
----
+
 
 ## 📜 License
 
 This project is for educational purposes and does not hold any proprietary data or licensing constraints.
 
----
 
 ## 🙏🏽 Acknowledgments
 Special thanks to Yusuf for guidance throughout this project and to the open-source community for the amazing tools.
