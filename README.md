@@ -152,12 +152,23 @@ Optimized for efficient querying, historical analysis, and cross-domain insights
 
 ---
 
-📘 Documentation
-Full project report and detailed technical documentation can be found here:
+## 📘 Documentation
 
-Smart City Project Report (PDF)
+[Project Walkthrough (PDF)](./Azure_databricks_data_engineering_project.pdf)
 
 ---
+
+## 👨🏽‍💻 Author
+
+**Sithsaba Zantsi**  
+_Cloud Data Engineer_  
+📫 [Connect on LinkedIn](https://www.linkedin.com/in/sithsaba-zantsi/)
+
+---
+
+## 📜 License
+
+This project is for educational purposes and does not hold any proprietary data or licensing constraints.
 
 Acknowledgments
 Special thanks to Yusuf for guidance throughout this project and to the open-source community for the amazing tools.
