@@ -118,7 +118,7 @@ Connect QuickSight to create interactive dashboards
 ## 📊 Dashboard (Amazon QuickSight)
 
 - <p align="center">
-  <img src="Analysis.pdf" width="600">
+  <img src="City_Analysis.pdf" width="600">
   <br />
   <em>Project Analysis</em>
 </p>
@@ -140,7 +140,7 @@ Geospatial and time-series insights
 The ERD defines the structured schema enabling relationships between multiple data domains:
 
 - <p align="center">
-  <img src="ERD_Diagram.pdf" width="600">
+  <img src="ERD_Diagram.png" width="600">
   <br />
   <em>ERD Diagram</em>
 </p>
