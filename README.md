@@ -154,9 +154,10 @@ Optimized for efficient querying, historical analysis, and cross-domain insights
 
 📘 Documentation
 Full project report and detailed technical documentation can be found here:
-👉 Smart City Project Report (PDF)
+
+Smart City Project Report (PDF)
 
 ---
 
 Acknowledgments
-Special thanks to Yunus for guidance throughout this project and to the open-source community for the amazing tools.
+Special thanks to Yusuf for guidance throughout this project and to the open-source community for the amazing tools.
