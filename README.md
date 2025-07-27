@@ -154,7 +154,7 @@ Optimized for efficient querying, historical analysis, and cross-domain insights
 
 ## 📘 Documentation
 
-[Project Walkthrough (PDF)](./Azure_databricks_data_engineering_project.pdf)
+[Project Walkthrough (PDF)] - _In Progress_
 
 ---
 
