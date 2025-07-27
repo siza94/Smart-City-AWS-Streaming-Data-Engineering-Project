@@ -53,7 +53,7 @@ This pipeline processes, stores, and visualizes the data in near real-time — i
 
 ## 🔧 System Architecture
 
-- <p align="center">
+<p align="center">
   <img src="Architecture.png" width="600">
   <br />
   <em>AWS, Spark, Kafka & Zookeeper solution architecture</em>
@@ -61,23 +61,17 @@ This pipeline processes, stores, and visualizes the data in near real-time — i
 
 This project implements a robust, cloud-first architecture for processing real-time smart city data:
 
-Kafka & Zookeeper (Dockerized): Stream vehicle, GPS, camera, weather, and emergency data from IoT simulators.
-
-Apache Spark: Real-time stream processing with multiple worker nodes.
+- Kafka & Zookeeper (Dockerized): Stream vehicle, GPS, camera, weather, and emergency data from IoT simulators.
+- Apache Spark: Real-time stream processing with multiple worker nodes.
 
 AWS Cloud Services:
 
-S3 for raw and transformed data storage.
-
-Glue & Crawlers for cataloging.
-
-Athena for serverless querying.
-
-Redshift for warehousing and deep analytics.
-
-QuickSight for visualization.
-
-IAM: Secure role-based access control.
+- S3 for raw and transformed data storage.
+- Glue & Crawlers for cataloging.
+- Athena for serverless querying.
+- Redshift for warehousing and deep analytics.
+- QuickSight for visualization.
+- IAM: Secure role-based access control.
 
 ---
 
@@ -106,19 +100,16 @@ docker exec -it smart_city-spark-master-1 spark-submit --master spark://spark-ma
 
 ### 4. AWS Configuration
 Configure S3 bucket and IAM roles
-
 Run Glue Crawler to catalog data
-
 Use Athena/Redshift for querying
-
 Connect QuickSight to create interactive dashboards
 
 ---
 
 ## 📊 Dashboard (Amazon QuickSight)
 
-- <p align="center">
-  <img src="City_Analysis.pdf" width="600">
+<p align="center">
+  <img src="City_Analysis.png" width="600">
   <br />
   <em>Project Analysis</em>
 </p>
@@ -139,7 +130,7 @@ Geospatial and time-series insights
 ❄️ Entity Relationship Diagram (ERD)
 The ERD defines the structured schema enabling relationships between multiple data domains:
 
-- <p align="center">
+<p align="center">
   <img src="ERD_Diagram.png" width="600">
   <br />
   <em>ERD Diagram</em>
@@ -149,13 +140,10 @@ Key Highlights:
 
 vehicle_data acts as the central table linking to:
 
-gps_data
-
-traffic_data
-
-emergency_data
-
-weather_data
+- gps_data
+- traffic_data
+- emergency_data
+- weather_data
 
 All supporting tables include a foreign key: vehicle_id
 
