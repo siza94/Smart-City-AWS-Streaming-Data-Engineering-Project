@@ -77,7 +77,7 @@ AWS Cloud Services:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/siza94/Smart-City-AWS-Streaming-Data-Engineering-Project.git
-cd python jobs/smart_city.py
+python jobs/smart_city.py
 ```
 
 
