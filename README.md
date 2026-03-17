@@ -16,7 +16,7 @@ This project implements a full real-time data engineering pipeline simulating a 
 
 ## 🔧 Technologies Used
 
-| Category            | Tools / Services                                |
+| Category            | Tools / Services                                 |
 |---------------------|--------------------------------------------------|
 | Ingestion           | Apache Kafka, Zookeeper, Docker                  |
 | Stream Processing   | Apache Spark Structured Streaming, Python        |
