@@ -165,7 +165,6 @@ def simulated_journey(producer, device_id):
 
         time.sleep(3)
 
-
 if __name__ == '__main__':
     producer_config = {
         'bootstrap.servers': KAFKA_BOOTSTRAP_SERVERS,
