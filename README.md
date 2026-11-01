@@ -1,74 +1,82 @@
 # Smart City End-to-End Real-Time Data Streaming Pipeline 🚦🏙️
 
-This project implements a full real-time data engineering pipeline simulating a smart city environment. By integrating IoT devices, stream processing, and cloud services, the solution enables continuous monitoring and analysis of critical urban data — such as traffic flow, weather conditions, GPS locations, and emergency incidents — empowering city officials with real-time insights for smarter urban management.
+[![Executive Showcase Deck](https://img.shields.io/badge/%F0%9F%8E%AF_Interactive_Showcase_Deck-Recruiters_%26_Hiring_Managers-FF9900?style=for-the-badge)](https://siza94.github.io/Smart-City-AWS-Streaming-Data-Engineering-Project/)
+[![8-Phase Engineering Report](https://img.shields.io/badge/%F0%9F%93%98_8--Phase_Engineering_Report-Architecture_%26_Lifecycle-0284C7?style=for-the-badge)](https://siza94.github.io/Smart-City-AWS-Streaming-Data-Engineering-Project/smart_city_project_report.html)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sithsaba_Zantsi-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sithsaba-zantsi/)
+
+> ### 👋 Visiting from a CV or Application? Start with the Interactive Artifacts:
+> | Artifact | Audience | What You'll See | Direct Link |
+> | :--- | :--- | :--- | :--- |
+> | **🎯 Executive & Recruiter Showcase Deck** | Recruiters, Hiring Managers, Business Owners | 3-persona lens switcher (`Recruiter` / `Lead DE` / `Executive`), clickable AWS + Kafka architecture explorer, and a live London–Birmingham telemetry simulator. | **[Launch Showcase Deck ↗](https://siza94.github.io/Smart-City-AWS-Streaming-Data-Engineering-Project/)** |
+> | **📘 8-Phase Engineering Lifecycle Report** | Senior Data Engineers & Technical Interviewers | Full lifecycle record (Phases 01–08): UK INRIX congestion evidence, architecture trade-offs, star-schema ERD, and production streaming implementation. | **[Read Engineering Report ↗](https://siza94.github.io/Smart-City-AWS-Streaming-Data-Engineering-Project/smart_city_project_report.html)** |
+
+---
+
+This project implements a full real-time data engineering pipeline simulating a connected urban corridor between **London (`51.5074°N, -0.1278°W`)** and **Birmingham (`52.4862°N, -1.8904°W`)**. By integrating multi-sensor IoT telemetry, containerized stream processing, and managed AWS cloud analytics, the solution enables sub-minute monitoring of traffic flow, weather conditions, GPS trajectories, and emergency incidents.
+
+---
+
+## 🚀 Key Architectural Highlights
+
+1. **Co-Partitioned Kafka Ordering (`jobs/main.py`)**: Keys Kafka messages by `deviceId` (`Vehicle-123`) so all 5 telemetry streams for a vehicle land in strict chronological order on the same partition.
+2. **Typed Geospatial Schema Contract (`jobs/spark-city.py`)**: Enforces explicit `latitude: DoubleType` and `longitude: DoubleType` fields across all 5 sensor schemas to prevent `NULL` coercion on read.
+3. **Watermarked Silver Stream-Stream Join (`jobs/spark-city.py`)**: Executes a watermarked (`2 minutes`) stream-stream join (`corridorSilverDF`) across `vehicle_data`, `weather_data`, and `emergency_data` on `(deviceId, timestamp ± 1 min)` into `s3a://.../data/silver_corridor_telemetry`.
+4. **S3 Small-File Mitigation & Secret Hygiene (`jobs/spark-city.py`, `jobs/config.py`)**: Uses `.trigger(processingTime='60 seconds')` micro-batching to reduce S3 Parquet object proliferation by 20x and loads AWS credentials securely via environment variables (`os.getenv`).
 
 ---
 
 ## ⚙️ Key Features
 
-- **Real-time data ingestion** from simulated IoT sensors
-- **Kafka-based message streaming** with Docker orchestration
-- **Spark Structured Streaming** for processing live data streams
-- **AWS S3, Glue, Redshift, Athena, and QuickSight** for cloud storage, ETL, querying, and visualization
-- **Dashboards** for vehicle telemetry, congestion, weather alerts, and emergency incidents
+- **Real-time data ingestion** from 5 synchronized IoT sensor streams (`vehicle_data`, `gps_data`, `traffic_data`, `weather_data`, `emergency_data`)
+- **Kafka-based message streaming** with Confluent Server 7.4.0 & ZooKeeper orchestrated via Docker Compose
+- **Spark 3.5 Structured Streaming** with 2-minute event-time watermarking, S3A fault-tolerant checkpointing, and stream-stream joins
+- **AWS S3, Glue, Redshift, Athena, and QuickSight** for cloud lakehouse storage, cataloging, serverless SQL, and operational BI
+- **Interactive HTML Portfolio Artifacts** documenting the full 8-phase engineering lifecycle and executive value
 
-
+---
 
 ## 🔧 Technologies Used
 
 | Category            | Tools / Services                                 |
 |---------------------|--------------------------------------------------|
-| Ingestion           | Apache Kafka, Zookeeper, Docker                  |
-| Stream Processing   | Apache Spark Structured Streaming, Python        |
-| Storage             | AWS S3, AWS Glue, AWS Redshift                   |
-| Querying            | AWS Athena                                       |
+| Ingestion           | Apache Kafka (`cp-server:7.4.0`), ZooKeeper, Docker |
+| Stream Processing   | Apache Spark 3.5 Structured Streaming, PySpark   |
+| Storage & Lakehouse | AWS S3 (Bronze & Silver Parquet), AWS Glue, AWS Redshift |
+| Querying            | AWS Athena (Serverless SQL)                      |
 | Visualization       | Amazon QuickSight                                |
-| Containerization    | Docker, Docker Compose                           |
-| Others              | IAM Roles, Python scripts, Simulated IoT data    |
+| Containerization    | Docker, Docker Compose (`datamasterylab` bridge) |
+| Governance & Auth   | AWS IAM Roles, Environment Credentials           |
 
-
+---
 
 ## 🧪 Use Case Scenario
 
-The simulated use case involves a vehicle traveling between major cities while sending data like:
+The simulated use case tracks a connected vehicle (`Vehicle-123`) traveling the 100-segment corridor from London to Birmingham while emitting:
 
-- Vehicle speed & telemetry
-- GPS coordinates
-- Weather reports
-- Emergency incidents (accidents, alerts, hazards)
+- Vehicle speed (`mph`) & OBD-II telemetry
+- Synchronized GPS coordinates (`latitude`, `longitude`, `direction`)
+- Roadside camera snapshots (`Nikon-DC8725` S3 media URI pointers)
+- Localized weather reports (`temperature`, `precipitation`, `windSpeed`, `humidity`, `airQualityIndex`)
+- Emergency incidents (`Accident`, `Fire`, `Medical`, `Police`, `None` + `Active`/`Resolved` status)
 
-This pipeline processes, stores, and visualizes the data in near real-time — ideal for smart traffic management, public safety, and city infrastructure optimization.
-
-
-### Prerequisites
-- Docker & Docker Compose
-- AWS account (with access to S3, Glue, Athena, Redshift, QuickSight)
-- Python 3.8+
-- AWS CLI configured
-
-
+---
 
 ## 🔧 System Architecture
 
 <p align="center">
-  <img src="Architecture.png" width="600">
+  <img src="Architecture.png" width="650">
   <br />
-  <em>AWS, Spark, Kafka & Zookeeper solution architecture</em>
+  <em>AWS, Spark, Kafka & ZooKeeper solution architecture</em>
 </p>
 
-This project implements a robust, cloud-first architecture for processing real-time smart city data:
-
-- Kafka & Zookeeper (Dockerized): Stream vehicle, GPS, camera, weather, and emergency data from IoT simulators.
-- Apache Spark: Real-time stream processing with multiple worker nodes.
-
-AWS Cloud Services:
-
-- S3 for raw and transformed data storage.
-- Glue & Crawlers for cataloging.
-- Athena for serverless querying.
-- Redshift for warehousing and deep analytics.
-- QuickSight for visualization.
-- IAM: Secure role-based access control.
+- **Kafka & ZooKeeper (Dockerized)**: Stream vehicle, GPS, camera, weather, and emergency data from Python IoT producers.
+- **Apache Spark 3.5**: Real-time stream processing cluster (1 Master + 2 Worker nodes) writing Bronze pass-through streams and a joined Silver corridor stream.
+- **AWS Cloud Services**:
+  - **S3** for raw Bronze, joined Silver Parquet storage, and write-ahead stream checkpoints.
+  - **Glue & Crawlers** for automated schema discovery and cataloging.
+  - **Athena** for serverless ad-hoc SQL querying over S3 Parquet.
+  - **Redshift** for dimensional star-schema warehousing.
+  - **QuickSight** for real-time city operations dashboards.
 
 ---
 
@@ -77,105 +85,65 @@ AWS Cloud Services:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/siza94/Smart-City-AWS-Streaming-Data-Engineering-Project.git
-python jobs/smart_city.py
+cd Smart-City-AWS-Streaming-Data-Engineering-Project
 ```
 
-
-### 2. Start Kafka and Zookeeper
+### 2. Start Kafka, ZooKeeper, and Spark Cluster
 ```bash
 docker-compose up -d
 ```
 
-### 3. Produce, Stream Data to AWS S3 bucket
-Simulate IoT sensor data by pushing to Kafka topics
-
-Launch Spark job:
-
+### 3. Start the IoT Telemetry Producer & Submit the Spark Streaming Job
+Run the Python producer to stream London–Birmingham telemetry into Kafka:
 ```bash
-docker exec -it smart_city-spark-master-1 spark-submit --master spark://spark-master:7077 --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,org.apache.hadoop:hadoop-aws:3.3.1,com.amazonaws:aws-java-sdk:1.11.469 jobs/spark-city.py
+python jobs/main.py
 ```
 
-### 4. AWS Configuration
-Configure S3 bucket and IAM roles
-Run Glue Crawler to catalog data
-Use Athena/Redshift for querying
-Connect QuickSight to create interactive dashboards
+Submit the Spark Structured Streaming job across the cluster:
+```bash
+docker exec -it smart_city-spark-master-1 spark-submit \
+  --master spark://spark-master:7077 \
+  --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,org.apache.hadoop:hadoop-aws:3.3.1,com.amazonaws:aws-java-sdk:1.11.469 \
+  jobs/spark-city.py
+```
 
 ---
 
 ## 📊 Dashboard (Amazon QuickSight)
 
 <p align="center">
-  <img src="City_Analysis.png" width="600">
+  <img src="City_Analysis.png" width="650">
   <br />
-  <em>Project Analysis</em>
+  <em>Amazon QuickSight Operational Dashboard</em>
 </p>
 
-The project features an interactive QuickSight dashboard for city-wide analytics and monitoring:
-
-
-- Live vehicle speed and temperature monitoring
-- Weather & air quality trends by location
-- Emergency incident distribution and status
-- Geospatial and time-series insights
-
-
+---
 
 ## ❄️ Entity Relationship Diagram (ERD)
-
-The ERD defines the structured star schema enabling relationships between multiple data domains:
 
 <p align="center">
   <img src="ERD_Diagram.png" width="600">
   <br />
-  <em>ERD Diagram</em>
+  <em>Star Schema ERD Diagram</em>
 </p>
-
-vehicle_data acts as the central table linking to:
-
-- gps_data
-- traffic_data
-- emergency_data
-- weather_data
-
-All supporting tables include a foreign key: vehicle_id
-
-Optimized for efficient querying, historical analysis, and cross-domain insights.
 
 ---
 
-## 💡 Key Takeaways
+## 📘 Interactive Documentation & Portfolio Artifacts
 
-📡 Simulated IoT data from vehicles, GPS, weather, and emergencies
+- 🎯 **[Executive & Recruiter Showcase Deck (`smart_city_showcase_deck.html`)](https://siza94.github.io/Smart-City-AWS-Streaming-Data-Engineering-Project/)**
+- 📘 **[8-Phase Engineering Lifecycle Report (`smart_city_project_report.html`)](https://siza94.github.io/Smart-City-AWS-Streaming-Data-Engineering-Project/smart_city_project_report.html)**
 
-🧩 Real-time processing using Spark + Kafka
-
-🧰 End-to-end orchestration using Docker containers
-
-🛠️ Secure, scalable AWS storage and analytics architecture
-
-📊 Visual dashboards for insights via Amazon QuickSight
-
-🏗️ Fully modular design—adaptable for any smart infrastructure project
-
-
-## 📘 Documentation
-
-[Project Walkthrough (PDF)] - _In Progress_
-
+---
 
 ## 👨🏽‍💻 Author
 
 **Sithsaba Zantsi**  
-_Cloud Data Engineer_  
+_Data Engineer_  
 📫 [Connect on LinkedIn](https://www.linkedin.com/in/sithsaba-zantsi/)
 
-
+---
 
 ## 📜 License
 
-This project is for educational purposes and does not hold any proprietary data or licensing constraints.
-
-
-## 🙏🏽 Acknowledgments
-Special thanks to Yusuf for guidance throughout this project and to the open-source community for the amazing tools.
+This project is for educational and portfolio demonstration purposes and does not hold any proprietary data or licensing constraints.
